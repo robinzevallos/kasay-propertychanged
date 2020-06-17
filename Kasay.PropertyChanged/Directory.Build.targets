@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <Target Name="IncludeFodyFiles">
+    <ItemGroup>
+      <NetStandardFilesToInclude Include="$(WeaverDirPath)\netstandard2*\$(PackageId).dll" />
+      <FodyHelpersInclude Include="$(WeaverDirPath)\netstandard2*\Kasay.FodyHelpers.dll" />
+    </ItemGroup>
+
+    <Error Text="FodyPackaging: No NetStandard weavers found to include in package. Maybe the build order is wrong?" Condition="'@(NetStandardFilesToInclude)'==''" />
+    <Error Text="kasay.FodyHelpers.dll not found." Condition="'@(FodyHelpersInclude)'==''" />
+
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="@(NetStandardFilesToInclude)" PackagePath="build\%(Filename)%(Extension)" />
+      <TfmSpecificPackageFile Include="@(FodyHelpersInclude)" PackagePath="build\%(Filename)%(Extension)" />
+      <TfmSpecificPackageFile Include="$(WeaverPropsFile)" PackagePath="build\$(PackageId).props" />
+    </ItemGroup>
+  </Target>
+
+</Project>

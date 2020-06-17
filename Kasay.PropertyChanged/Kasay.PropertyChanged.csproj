@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="6.1.0" PrivateAssets="None" />
+  </ItemGroup>
+
+</Project>
+
+<!--<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <Version>1.0.2</Version>
+    --><!--<AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>--><!--
+    <Authors>Robin Zevallos</Authors>
+    <Description>Auto PropertyChanged with Fody.</Description>
+    <PackageTags>ILWeaving, Fody, Cecil, Xamarin.Forms, Binding, PropertyChanged, Auto</PackageTags>
+    <PackageOutputPath>$(SolutionDir)../nugets</PackageOutputPath>
+    <PackageProjectUrl>https://github.com/Fody/Home/tree/master/BasicFodyAddin</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/robinzevallos/Kasay.BindableProperty.Fody/master/kasay_icon.png</PackageIconUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="6.1.0" PrivateAssets="none" />
+    <PackageReference Include="FodyPackaging" Version="6.1.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="build\" />
+  </ItemGroup>
+</Project>-->

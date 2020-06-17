@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup>
+  <TargetFrameworks>netstandard2.0</TargetFrameworks>
+
+  <!--<OutputType>Exe</OutputType>
+  <TargetFramework>netcoreapp3.1</TargetFramework>-->
+  
+  <IsPackable>false</IsPackable>
+</PropertyGroup>
+<ItemGroup>
+  <PackageReference Include="Fody" Version="6.1.0">
+    <PrivateAssets>all</PrivateAssets>
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  </PackageReference>
+  <ProjectReference Include="..\Kasay.PropertyChanged\Kasay.PropertyChanged.csproj" />
+  <WeaverFiles Include="$(SolutionDir)\Kasay.PropertyChanged.Fody\bin\$(Configuration)\netstandard2.0\\Kasay.PropertyChanged.Fody.dll" />
+</ItemGroup>
+</Project>
