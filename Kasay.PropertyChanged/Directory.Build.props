@@ -4,7 +4,7 @@
     <Authors>Robin Zevallos</Authors>
     <Description>Auto INotifyPropertyChanged with Fody and other implementation options.</Description>
     <PackageTags>PropertyChanged, INotifyPropertyChanged, MVVM, Notify, Xamarin.Forms, Auto, ILWeaving, Fody, Cecil, Binding</PackageTags>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
