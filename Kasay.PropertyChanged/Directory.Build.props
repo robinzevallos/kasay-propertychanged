@@ -19,7 +19,8 @@
     <DisableFody>true</DisableFody>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>$(MSBuildProjectName).Fody</PackageId>
-    <PackageOutputPath>$(SolutionDir)../nugets</PackageOutputPath>
+    <!--<PackageOutputPath>$(SolutionDir)../nugets</PackageOutputPath>-->
+    <PackageOutputPath>$(SolutionDir)</PackageOutputPath>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeFodyFiles</TargetsForTfmSpecificContentInPackage>
     <WeaverDirPath>..\$(PackageId)\bin\$(Configuration)\</WeaverDirPath>
     <WeaverPropsFile>$(MSBuildThisFileDirectory)Weaver.props</WeaverPropsFile>
