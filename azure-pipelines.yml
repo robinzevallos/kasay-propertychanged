@@ -56,8 +56,8 @@ steps:
 - task: NuGetCommand@2
   displayName: 'NuGet pack'
   inputs:
-    command: pack
-    packagesToPack: Kasay.PropertyChanged/Kasay.PropertyChanged.csproj
+    command: 'pack'
+    packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
     # buildProperties: 'PackageId=$(MSBuildProjectName).Fody'
     # versioningScheme: byPrereleaseNumber
     # majorVersion: '$(Major)'
