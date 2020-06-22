@@ -42,10 +42,11 @@ steps:
   displayName: 'dotnet pack $(buildConfiguration)'
   inputs:
     command: 'pack'
+    projects: '**/*.sln'
     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
-    nobuild: true
+    nobuild: false
     # buildProperties: '-p:PackageId=lolo'
