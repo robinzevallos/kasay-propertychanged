@@ -38,15 +38,26 @@ steps:
     command: 'build'
     projects: '**/*.sln'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet pack $(buildConfiguration)'
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet pack $(buildConfiguration)'
+#   inputs:
+#     command: 'pack'
+#     projects: '**/*.sln'
+#     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
+#     versioningScheme: byPrereleaseNumber
+#     majorVersion: '$(Major)'
+#     minorVersion: '$(Minor)'
+#     patchVersion: '$(Patch)'
+#     nobuild: false
+    # buildProperties: '-p:PackageId=lolo'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet pack'
   inputs:
-    command: 'pack'
-    projects: '**/*.sln'
-    packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
+    command: pack
+    packagesToPack: Kasay.PropertyChanged/Kasay.PropertyChanged.csproj
+    buildProperties: '-p:PackageId=$(MSBuildProjectName).Fody'
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
-    nobuild: false
-    # buildProperties: '-p:PackageId=lolo'
