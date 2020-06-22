@@ -39,8 +39,9 @@ steps:
     projects: '**/*.sln'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet pack $(buildConfiguration)'
   inputs:
-    command: pack
+    command: 'pack'
     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
