@@ -46,4 +46,4 @@ steps:
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
-    buildProperties: '-p:PackageId=lolo'
+    # buildProperties: '-p:PackageId=lolo'
