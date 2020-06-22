@@ -11,6 +11,9 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  Major: '2'
+  Minor: '0'
+  Patch: '2'
 
 steps:
 # - task: NuGetCommand@2
@@ -30,3 +33,17 @@ steps:
   inputs:
     command: 'restore'
     projects: '**/*.sln'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.sln'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: pack
+    packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
+    buildProperties: '-p:PackageId=lolo'
