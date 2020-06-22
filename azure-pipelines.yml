@@ -56,7 +56,7 @@ steps:
   inputs:
     command: pack
     packagesToPack: Kasay.PropertyChanged/Kasay.PropertyChanged.csproj
-    buildProperties: '-p:PackageId=$(MSBuildProjectName).Fody'
+    buildProperties: 'PackageId=$(MSBuildProjectName).Fody'
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
