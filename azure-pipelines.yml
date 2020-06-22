@@ -66,5 +66,12 @@ steps:
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
-    # buildProperties: 'PackageId=lolo'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    publishVstsFeed: '408c5cbf-94bd-4eee-891f-ee06e706de03/31701fc6-f7b7-40e1-b620-14e219af2155'
+
 
