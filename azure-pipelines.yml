@@ -23,7 +23,7 @@ steps:
     restoreSolution: '**/*.sln'
 
 - task: MSBuild@1
-  displayName: 'Build'
+  displayName: 'Build Solution'
   inputs:
     solution: '**/*.sln'
 # - task: NuGetCommand@2
@@ -58,8 +58,8 @@ steps:
   inputs:
     command: pack
     packagesToPack: Kasay.PropertyChanged/Kasay.PropertyChanged.csproj
-    buildProperties: 'PackageId=$(MSBuildProjectName).Fody'
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '$(Major)'
-    minorVersion: '$(Minor)'
-    patchVersion: '$(Patch)'
+    # buildProperties: 'PackageId=$(MSBuildProjectName).Fody'
+    # versioningScheme: byPrereleaseNumber
+    # majorVersion: '$(Major)'
+    # minorVersion: '$(Minor)'
+    # patchVersion: '$(Patch)'
