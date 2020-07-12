@@ -6,10 +6,6 @@ pool:
 
 variables:
 - group: kasay-propertychanged-variables
-  # buildConfiguration: 'Release'
-  # Major: '2'
-  # Minor: '0'
-  # Patch: '2'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -26,7 +22,7 @@ steps:
     projects: '**/*.sln'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet pack $(buildConfiguration)'
+  displayName: 'dotnet pack beta'
   inputs:
     command: 'pack'
     nobuild: true
@@ -35,7 +31,19 @@ steps:
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/beta'
 
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack public'
+  inputs:
+    command: 'pack'
+    nobuild: true
+    packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/public'
+    
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(build.sourcesdirectory)'
