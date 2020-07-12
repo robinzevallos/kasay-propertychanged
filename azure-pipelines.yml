@@ -6,6 +6,8 @@ pool:
 
 variables:
 - group: kasay-propertychanged-variables
+- name: version-full
+  value: $(Major).$(Minor).$(Patch)
 
 steps:
 - task: DotNetCoreCLI@2
@@ -40,7 +42,7 @@ steps:
     nobuild: true
     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
     versioningScheme: byEnvVar
-    versionEnvVar: versionFull
+    versionEnvVar: version-full
     packDirectory: '$(Build.ArtifactStagingDirectory)/public'
     
 - task: CopyFiles@2
