@@ -1,8 +1,3 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
 - master
 
@@ -10,47 +5,21 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildConfiguration: 'Release'
-  Major: '2'
-  Minor: '0'
-  Patch: '2'
+- group: kasay-propertychanged-variables
+  # buildConfiguration: 'Release'
+  # Major: '2'
+  # Minor: '0'
+  # Patch: '2'
 
 steps:
-# - task: NuGetCommand@2
-#   displayName: 'NuGet restore'
-#   inputs:
-#     command: 'restore'
-#     restoreSolution: '**/*.sln'
-
-# - task: MSBuild@1
-#   displayName: 'Build Solution'
-#   inputs:
-#     solution: '**/*.sln'
-#     msbuildArguments: '--configuration $(buildConfiguration)'
-# - task: NuGetCommand@2
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '**/*.nupkg'
-#     publishVstsFeed: '408c5cbf-94bd-4eee-891f-ee06e706de03/31701fc6-f7b7-40e1-b620-14e219af2155'
-
-# - task: NuGetCommand@2
-#   displayName: 'NuGet pack'
-#   inputs:
-#     command: 'pack'
-#     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
-#     # buildProperties: 'PackageId=$(MSBuildProjectName).Fody'
-#     # versioningScheme: byPrereleaseNumber
-#     # majorVersion: '$(Major)'
-#     # minorVersion: '$(Minor)'
-#     # patchVersion: '$(Patch)'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
     projects: '**/*.sln'
+
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet buil $(buildConfiguration)'
+  displayName: 'dotnet build $(buildConfiguration)'
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
@@ -66,20 +35,15 @@ steps:
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-# - task: DotNetCoreCLI@2
-#   displayName: 'dotnet push'
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-#     publishVstsFeed: '408c5cbf-94bd-4eee-891f-ee06e706de03/31701fc6-f7b7-40e1-b620-14e219af2155'
 
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(build.sourcesdirectory)'
     Contents: '**\bin\$(BuildConfiguration)\**\*.nupkg'
     TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
