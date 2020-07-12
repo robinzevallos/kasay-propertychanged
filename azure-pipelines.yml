@@ -40,7 +40,7 @@ steps:
     nobuild: true
     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
     versioningScheme: byEnvVar
-    versionEnvVar: $(versionFull)
+    versionEnvVar: '$(versionFull)'
     packDirectory: '$(Build.ArtifactStagingDirectory)/public'
     
 - task: CopyFiles@2
