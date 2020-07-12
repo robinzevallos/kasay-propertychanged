@@ -39,9 +39,8 @@ steps:
     command: 'pack'
     nobuild: true
     packagesToPack: 'Kasay.PropertyChanged/Kasay.PropertyChanged.csproj'
-    majorVersion: '$(Major)'
-    minorVersion: '$(Minor)'
-    patchVersion: '$(Patch)'
+    versioningScheme: byEnvVar
+    versionEnvVar: '$(Major).$(Minor).$(Patch)'
     packDirectory: '$(Build.ArtifactStagingDirectory)/public'
     
 - task: CopyFiles@2
