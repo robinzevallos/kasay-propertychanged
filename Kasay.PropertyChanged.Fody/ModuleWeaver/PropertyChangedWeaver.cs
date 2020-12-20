@@ -1,4 +1,5 @@
-﻿using Mono.Cecil;
+﻿using Kasay.FodyHelpers;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using System;
 using System.Linq;
@@ -35,16 +36,20 @@ internal class PropertyChangedWeaver
         var instructions = propertyDefinition.SetMethod.Body.Instructions;
         var processor = propertyDefinition.SetMethod.Body.GetILProcessor();
 
-        var methodDefinition = typeDefinition
-            .BaseType
-            .Resolve()
-            .Methods
-            .SingleOrDefault(m => m.Name == "OnPropertyChanged");
+        //var methodDefinition = typeDefinition
+        //    .BaseType
+        //    .Resolve()
+        //    .Methods
+        //    .SingleOrDefault(m => m.Name == "OnPropertyChanged");
+
+        //var callSetProperty = typeDefinition
+        //    .BaseType
+        //    .Module
+        //    .ImportReference(methodDefinition);
 
         var callSetProperty = typeDefinition
-            .BaseType
             .Module
-            .ImportReference(methodDefinition);
+            .GetMethodReference("Kasay.PropertyChanged.Notifiable", "OnPropertyChanged");
 
         processor.Emit(OpCodes.Nop);
         // if (_property != value)

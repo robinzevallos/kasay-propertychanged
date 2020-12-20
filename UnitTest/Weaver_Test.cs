@@ -34,5 +34,25 @@ namespace UnitTest
 
             Assert.Equal(expectedProperty, actualProperty);
         }
+
+        [Fact]
+        public void ValidateOnPropertyChangedInjectedInherited()
+        {
+            var type = testResult.Assembly.GetType("AssemblyToProcess.Doo");
+            var foo = Activator.CreateInstance(type) as dynamic;
+
+            dynamic expectedProperty = null;
+
+            (foo as INotifyPropertyChanged).PropertyChanged += (s, e) =>
+            {
+                expectedProperty = foo.Property2;
+            };
+
+            foo.Property2 = "Robin";
+
+            var actualProperty = foo.Property2;
+
+            Assert.Equal(expectedProperty, actualProperty);
+        }
     }
 }
